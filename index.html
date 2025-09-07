@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>$KINDNESS Coin - Spreading Kindness Through Crypto</title>
+    <meta name="description" content="Join the $KINDNESS movement! Community-driven meme coin that has already donated over $20,000 to help streamers and creators achieve their dreams.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #065f46 0%, #10b981 50%, #34d399 100%);
+            color: white;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        .contract-banner {
+            background: rgba(0,0,0,0.9);
+            padding: 12px;
+            text-align: center;
+            font-weight: bold;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid #fbbf24;
+        }
+        
+        .contract-text {
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .contract-address {
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            background: rgba(251, 191, 36, 0.2);
+            padding: 5px 10px;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 0 10px;
+        }
+        
+        .copy-btn {
+            background: linear-gradient(45deg, #fbbf24, #f59e0b);
+            border: none;
+            color: #065f46;
+            padding: 8px 15px;
+            border-radius: 25px;
+            margin-left: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .copy-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(251, 191, 36, 0.4);
+        }
+        
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            padding: 3rem 2rem;
+            background: radial-gradient(circle at 50% 50%, rgba(52, 211, 153, 0.3) 0%, transparent 50%);
+        }
+        
+        .floating-icons {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        
+        .floating-icon {
+            position: absolute;
+            font-size: 2.5rem;
+            opacity: 0.15;
+            animation: float 8s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.1; }
+            25% { transform: translateY(-30px) rotate(5deg); opacity: 0.2; }
+            50% { transform: translateY(-60px) rotate(-5deg); opacity: 0.15; }
+            75% { transform: translateY(-30px) rotate(3deg); opacity: 0.2; }
+        }
+        
+        .heart-logo {
+            font-size: 8rem;
+            margin: 2rem 0;
+            animation: pulse 3s ease-in-out infinite;
+            text-shadow: 0 0 30px rgba(251, 191, 36, 0.5);
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); filter: brightness(1); }
+            50% { transform: scale(1.1); filter: brightness(1.2); }
+        }
+        
+        h1 {
+            font-size: 5rem;
+            font-weight: 900;
+            margin: 1rem 0;
+            background: linear-gradient(45deg, #fbbf24, #f59e0b, #d97706);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 50px rgba(251, 191, 36, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.8rem;
+            margin: 1rem 0 2rem;
+            opacity: 0.95;
+            font-weight: 500;
+        }
+        
+        .mission-highlight {
+            background: rgba(251, 191, 36, 0.2);
+            padding: 1.5rem 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            border: 2px solid rgba(251, 191, 36, 0.3);
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .btn {
+            padding: 1.2rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(45deg, #fbbf24, #f59e0b);
+            color: #065f46;
+            box-shadow: 0 8px 25px rgba(251, 191, 36, 0.3);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 3px solid #fbbf24;
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.1);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+        
+        .btn-primary:hover {
+            box-shadow: 0 15px 35px rgba(251, 191, 36, 0.5);
+        }
+        
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section h2 {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            background: linear-gradient(45deg, #fbbf24, #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin: 4rem 0;
+        }
+        
+        .feature-card {
+            background: rgba(255,255,255,0.1);
+            padding: 3rem 2rem;
+            border-radius: 25px;
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255,255,255,0.2);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255,255,255,0.15);
+            border-color: rgba(251, 191, 36, 0.5);
+        }
+        
+        .feature-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #fbbf24;
+        }
+        
+        .tokenomics {
+            background: rgba(0,0,0,0.4);
+            border-radius: 25px;
+            padding: 4rem 3rem;
+            margin: 4rem 0;
+            border: 2px solid rgba(251, 191, 36, 0.3);
+        }
+        
+        .tokenomics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+        
+        .tokenomics-item {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .tokenomics-item:hover {
+            transform: scale(1.05);
+            background: rgba(255,255,255,0.15);
+        }
+        
+        .percentage {
+            font-size: 4rem;
+            font-weight: 900;
+            color: #fbbf24;
+            text-shadow: 0 0 20px rgba(251, 191, 36, 0.5);
+        }
+        
+        .how-to-buy {
+            background: rgba(255,255,255,0.08);
+            border-radius: 25px;
+            padding: 4rem 3rem;
+            margin: 4rem 0;
+            border: 2px solid rgba(255,255,255,0.2);
+        }
+        
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+        
+        .step {
+            background: rgba(255,255,255,0.1);
+            padding: 2.5rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .step:hover {
+            transform: translateY(-5px);
+            border-color: rgba(251, 191, 36, 0.5);
+            background: rgba(255,255,255,0.15);
+        }
+        
+        .step-number {
+            background: linear-gradient(45deg, #fbbf24, #f59e0b);
+            color: #065f46;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-weight: 900;
+            font-size: 1.5rem;
+            box-shadow: 0 8px 25px rgba(251, 191, 36, 0.3);
+        }
+        
+        .social-section {
+            background: rgba(0,0,0,0.3);
+            border-radius: 25px;
+            padding: 4rem 3rem;
+            margin: 4rem 0;
+            text-align: center;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .social-link {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 80px;
+            height: 80px;
+            font-size: 1.5rem;
+            border: 2px solid rgba(255,255,255,0.2);
+        }
+        
+        .social-link:hover {
+            background: linear-gradient(45deg, #fbbf24, #f59e0b);
+            color: #065f46;
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 10px 30px rgba(251, 191, 36, 0.4);
+        }
+        
+        footer {
+            background: rgba(0,0,0,0.7);
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-top: 5rem;
+            border-top: 2px solid rgba(251, 191, 36, 0.3);
+        }
+        
+        footer p {
+            margin: 0.5rem 0;
+            opacity: 0.9;
+        }
+        
+        @media (max-width: 768px) {
+            .heart-logo {
+                font-size: 5rem;
+            }
+            
+            h1 {
+                font-size: 3rem;
+            }
+            
+            .subtitle {
+                font-size: 1.3rem;
+            }
+            
+            .section {
+                padding: 3rem 1rem;
+            }
+            
+            .section h2 {
+                font-size: 2rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .contract-banner {
+                font-size: 0.8rem;
+                padding: 8px;
+            }
+            
+            .contract-address {
+                font-size: 0.7rem;
+                display: block;
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="contract-banner">
+        <div class="contract-text">📊 $KINDNESS Contract Address</div>
+        <span class="contract-address">9eyegrQF3JnEnEnGQKn2M7EB7H1j1ZTq8Sb65738wUMG</span>
+        <button class="copy-btn" onclick="copyContract()">Copy Address</button>
+    </div>
+
+    <div class="floating-icons">
+        <div class="floating-icon" style="top: 15%; left: 10%; animation-delay: 0s;">💝</div>
+        <div class="floating-icon" style="top: 25%; right: 15%; animation-delay: 1s;">🚀</div>
+        <div class="floating-icon" style="top: 55%; left: 8%; animation-delay: 2s;">💖</div>
+        <div class="floating-icon" style="top: 70%; right: 12%; animation-delay: 3s;">✨</div>
+        <div class="floating-icon" style="top: 80%; left: 20%; animation-delay: 4s;">💎</div>
+        <div class="floating-icon" style="top: 40%; right: 25%; animation-delay: 5s;">🌟</div>
+        <div class="floating-icon" style="top: 60%; left: 75%; animation-delay: 6s;">💫</div>
+    </div>
+
+    <section class="hero">
+        <div class="heart-logo">💝</div>
+        <h1>$KINDNESS</h1>
+        <p class="subtitle">Spreading Kindness Through Cryptocurrency</p>
+        
+        <div class="mission-highlight">
+            🎉 Already donated over $20,000 to help streamers & creators achieve their dreams! 🎉
+        </div>
+        
+        <p style="font-size: 1.3rem; margin: 2rem 0; max-width: 600px;">
+            Join the movement that's changing lives one transaction at a time. $KINDNESS isn't just a meme coin – it's a community dedicated to supporting small content creators and spreading positivity through crypto.
+        </p>
+        
+        <div class="cta-buttons">
+            <a href="#how-to-buy" class="btn btn-primary">Buy $KINDNESS Now</a>
+            <a href="#about" class="btn btn-secondary">Learn Our Mission</a>
+        </div>
+    </section>
+
+    <section id="about" class="section">
+        <h2>Why $KINDNESS?</h2>
+        
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">💖</div>
+                <h3>Real Impact</h3>
+                <p>We've already donated over $20,000 directly to small streamers and content creators, helping them buy equipment, pay bills, and pursue their passions. Every transaction contributes to our creator fund.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3>Community-Driven</h3>
+                <p>Built by creators, for creators. Our community votes on which streamers and content creators receive funding. Together, we decide how to spread kindness most effectively.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🚀</div>
+                <h3>Fresh Launch</h3>
+                <p>Launched September 6, 2025, with immediate impact. Get in early and be part of a movement that's already changing lives while building something extraordinary together.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="tokenomics">
+            <h2>Tokenomics</h2>
+            <p style="text-align: center; font-size: 1.2rem; margin-bottom: 2rem;">
+                Transparent distribution designed for maximum community impact and long-term sustainability.
+            </p>
+            <div class="tokenomics-grid">
+                <div class="tokenomics-item">
+                    <div class="percentage">85%</div>
+                    <h3>Community Pool</h3>
+                    <p>Fair distribution to holders and community members</p>
+                </div>
+                <div class="tokenomics-item">
+                    <div class="percentage">10%</div>
+                    <h3>Creator Fund</h3>
+                    <p>Direct donations to streamers and content creators</p>
+                </div>
+                <div class="tokenomics-item">
+                    <div class="percentage">3%</div>
+                    <h3>Development</h3>
+                    <p>Platform improvements and feature development</p>
+                </div>
+                <div class="tokenomics-item">
+                    <div class="percentage">2%</div>
+                    <h3>Marketing</h3>
+                    <p>Growing our community and spreading kindness</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="how-to-buy" class="section">
+        <div class="how-to-buy">
+            <h2>How to Buy $KINDNESS</h2>
+            <p style="text-align: center; font-size: 1.2rem; margin-bottom: 2rem;">
+                Join the kindness movement in 4 simple steps. Start spreading positivity today!
+            </p>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Set Up Your Wallet</h3>
+                    <p>Download and install a Solana wallet like Phantom, Solflare, or any compatible wallet. Create your account and secure your seed phrase safely.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Get SOL Tokens</h3>
+                    <p>Purchase SOL from any major exchange (Coinbase, Binance, etc.) and transfer it to your wallet. You'll need SOL to swap for $KINDNESS.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Swap for $KINDNESS</h3>
+                    <p>Use Jupiter, Raydium, or another Solana DEX to swap your SOL for $KINDNESS using our contract address above.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Spread Kindness!</h3>
+                    <p>Hold your tokens, join our community, and help us vote on which creators to support next. Together, we're making crypto kinder!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="social-section">
+            <h2>Join Our Community</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 1rem;">
+                Connect with fellow kindness spreaders and stay updated on our latest creator support initiatives.
+            </p>
+            <div class="social-links">
+                <a href="https://x.com/ColeCaetano_" class="social-link" title="Follow Cole on X (Twitter)" target="_blank">𝕏</a>
+                <a href="https://tiktok.com/@karvetv" class="social-link" title="Follow KarveTV on TikTok" target="_blank">📱</a>
+                <a href="https://t.me/KindnessCoinSOL" class="social-link" title="Join our Telegram" target="_blank">📞</a>
+                <a href="https://x.com/i/communities/1831077916763824381" class="social-link" title="Join X Community" target="_blank">👥</a>
+            </div>
+            <p style="margin-top: 2rem; opacity: 0.9; font-size: 1.1rem;">
+                Together, we're proving that cryptocurrency can be a force for good. Every holder is part of our mission to spread kindness and support creators worldwide. 💝
+            </p>
+        </div>
+    </section>
+
+    <footer>
+        <p style="font-size: 1.2rem; font-weight: bold;">&copy; 2025 $KINDNESS Coin</p>
+        <p>Spreading kindness, one transaction at a time 💝</p>
+        <p style="margin-top: 1.5rem; font-family: 'Courier New', monospace; opacity: 0.8;">
+            Contract: 9eyegrQF3JnEnEnGQKn2M7EB7H1j1ZTq8Sb65738wUMG
+        </p>
+        <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.7;">
+            Always DYOR (Do Your Own Research) • Not Financial Advice • Crypto is risky
+        </p>
+    </footer>
+
+    <script>
+        function copyContract() {
+            const address = '9eyegrQF3JnEnEnGQKn2M7EB7H1j1ZTq8Sb65738wUMG';
+            navigator.clipboard.writeText(address).then(() => {
+                const btn = document.querySelector('.copy-btn');
+                const originalText = btn.textContent;
+                btn.textContent = '✅ Copied!';
+                btn.style.background = 'linear-gradient(45deg, #10b981, #059669)';
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.style.background = 'linear-gradient(45deg, #fbbf24, #f59e0b)';
+                }, 3000);
+            }).catch(() => {
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = address;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                
+                const btn = document.querySelector('.copy-btn');
+                const originalText = btn.textContent;
+                btn.textContent = '✅ Copied!';
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                }, 3000);
+            });
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add entrance animations when scrolling
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections for animation
+        document.querySelectorAll('.section, .feature-card, .step, .tokenomics-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Set random delays for floating icons
+        document.querySelectorAll('.floating-icon').forEach((icon, index) => {
+            icon.style.animationDelay = `${index * 1.2}s`;
+        });
+    </script>
+</body>
+</html>
