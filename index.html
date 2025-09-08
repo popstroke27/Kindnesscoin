@@ -584,6 +584,78 @@
             line-height: 1.6;
         }
         
+        /* Creator Rewards Section Styles */
+        .rewards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .reward-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(220, 38, 38, 0.1);
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        .reward-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(220, 38, 38, 0.2);
+            border-color: rgba(220, 38, 38, 0.3);
+        }
+        
+        .reward-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .reward-label {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .reward-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #dc2626, #f87171);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+        
+        .reward-subtitle {
+            font-size: 0.9rem;
+            color: #888;
+            opacity: 0.8;
+        }
+        
+        /* Responsive adjustments for rewards */
+        @media (max-width: 768px) {
+            .rewards-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 1.5rem;
+            }
+            
+            .reward-card {
+                padding: 1.5rem;
+            }
+            
+            .reward-value {
+                font-size: 2rem;
+            }
+        }
+        
         .social-section {
             background: linear-gradient(135deg, #f8f9ff, #fff5f5);
             border-radius: 30px;
@@ -1225,6 +1297,54 @@
         </div>
     </section>
 
+    <!-- Live Creator Rewards Section -->
+    <section id="creator-rewards" style="padding: 4rem 2rem; background: linear-gradient(135deg, #fff5f5 0%, #ffe4e6 100%); position: relative; overflow: hidden;">
+        <div style="max-width: 1200px; margin: 0 auto; text-align: center; position: relative; z-index: 1;">
+            <h2 style="font-size: 3rem; margin-bottom: 1rem; background: linear-gradient(135deg, #dc2626, #f87171); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                🎉 Live Creator Rewards
+            </h2>
+            <p style="font-size: 1.3rem; margin-bottom: 3rem; color: #666; max-width: 600px; margin-left: auto; margin-right: auto;">
+                Real-time data showing how $KIND is making a difference for creators and the community
+            </p>
+            
+            <div class="rewards-grid" id="rewards-container">
+                <div class="reward-card">
+                    <div class="reward-icon">💰</div>
+                    <div class="reward-label">Total Creator Rewards</div>
+                    <div class="reward-value" id="total-rewards-usd">Loading...</div>
+                    <div class="reward-subtitle" id="total-rewards-sol">Loading...</div>
+                </div>
+                
+                <div class="reward-card">
+                    <div class="reward-icon">📈</div>
+                    <div class="reward-label">Current Market Cap</div>
+                    <div class="reward-value" id="market-cap">Loading...</div>
+                    <div class="reward-subtitle">$KIND Token Value</div>
+                </div>
+                
+                <div class="reward-card">
+                    <div class="reward-icon">👥</div>
+                    <div class="reward-label">Community Followers</div>
+                    <div class="reward-value" id="followers-count">Loading...</div>
+                    <div class="reward-subtitle">Growing Daily</div>
+                </div>
+                
+                <div class="reward-card">
+                    <div class="reward-icon">⏰</div>
+                    <div class="reward-label">Last Updated</div>
+                    <div class="reward-value" id="last-updated">Loading...</div>
+                    <div class="reward-subtitle">Live Data</div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 2rem;">
+                <button onclick="refreshRewards()" class="btn btn-secondary" style="background: linear-gradient(135deg, #dc2626, #f87171); color: white; border: none;">
+                    🔄 Refresh Data
+                </button>
+            </div>
+        </div>
+    </section>
+
     <footer>
         <p style="font-size: 1.3rem; font-weight: bold;">&copy; 2025 $KIND Coin</p>
         <p style="font-size: 1.1rem;">Spreading kindness, one transaction at a time 💝</p>
@@ -1315,6 +1435,59 @@
             });
             img.style.opacity = '0';
             img.style.transition = 'opacity 0.5s ease';
+        });
+
+        // Creator Rewards functionality
+        async function fetchCreatorRewards() {
+            try {
+                const response = await fetch('/api/creator-rewards');
+                const data = await response.json();
+                
+                // Update the UI with live data
+                document.getElementById('total-rewards-usd').textContent = `$${data.totalUSD}`;
+                document.getElementById('total-rewards-sol').textContent = `${data.totalSOL} SOL`;
+                document.getElementById('market-cap').textContent = `$${data.marketCap}`;
+                document.getElementById('followers-count').textContent = data.followers;
+                
+                // Format last updated time
+                const lastUpdated = new Date(data.lastUpdated);
+                const timeString = lastUpdated.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+                document.getElementById('last-updated').textContent = timeString;
+                
+                console.log('Creator rewards updated successfully');
+            } catch (error) {
+                console.error('Error fetching creator rewards:', error);
+                // Show fallback data
+                document.getElementById('total-rewards-usd').textContent = '$50.27K';
+                document.getElementById('total-rewards-sol').textContent = '233.987 SOL';
+                document.getElementById('market-cap').textContent = '$218.2K';
+                document.getElementById('followers-count').textContent = '86';
+                document.getElementById('last-updated').textContent = 'Error';
+            }
+        }
+        
+        function refreshRewards() {
+            // Add loading state
+            const refreshBtn = document.querySelector('button[onclick="refreshRewards()"]');
+            const originalText = refreshBtn.textContent;
+            refreshBtn.textContent = '🔄 Loading...';
+            refreshBtn.disabled = true;
+            
+            fetchCreatorRewards().then(() => {
+                // Reset button after loading
+                setTimeout(() => {
+                    refreshBtn.textContent = originalText;
+                    refreshBtn.disabled = false;
+                }, 1000);
+            });
+        }
+        
+        // Load creator rewards when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            fetchCreatorRewards();
+            
+            // Auto-refresh every 5 minutes
+            setInterval(fetchCreatorRewards, 5 * 60 * 1000);
         });
 
         // Stats update functionality
