@@ -1051,7 +1051,7 @@
 
     <section class="hero">
         
-        <h1>KINDNESS COIN</h1>
+        <h1 style="background: linear-gradient(135deg, #dc2626, #fed7aa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">KINDNESS COIN</h1>
         <h2 style="font-size: 2.5rem; color: #ff6b6b; margin: 1rem 0;">$KIND</h2>
         <p class="subtitle">Spreading Kindness Through Cryptocurrency</p>
         
@@ -1134,20 +1134,8 @@
                     <div class="reward-subtitle">$KIND Token Value</div>
                 </div>
                 
-                
-                <div class="reward-card">
-                    <div class="reward-icon">⏰</div>
-                    <div class="reward-label">Last Updated</div>
-                    <div class="reward-value" id="last-updated">Loading...</div>
-                    <div class="reward-subtitle">Live Data</div>
-                </div>
             </div>
             
-            <div style="margin-top: 2rem;">
-                <button onclick="refreshRewards()" class="btn btn-secondary" style="background: linear-gradient(135deg, #dc2626, #f87171); color: white; border: none;">
-                    🔄 Refresh Data
-                </button>
-            </div>
         </div>
     </section>
 
@@ -1447,19 +1435,6 @@
                 document.getElementById('total-rewards-sol').textContent = `${data.totalSOL} SOL`;
                 document.getElementById('market-cap').textContent = `$${data.marketCap}`;
                 
-                // Format last updated time with better error handling
-                try {
-                    const lastUpdated = new Date(data.lastUpdated);
-                    if (isNaN(lastUpdated.getTime())) {
-                        document.getElementById('last-updated').textContent = 'Just Now';
-                    } else {
-                        const timeString = lastUpdated.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-                        document.getElementById('last-updated').textContent = timeString;
-                    }
-                } catch (dateError) {
-                    document.getElementById('last-updated').textContent = 'Just Now';
-                }
-                
                 console.log('Creator rewards updated successfully');
             } catch (error) {
                 console.error('Error fetching creator rewards:', error);
@@ -1467,32 +1442,15 @@
                 document.getElementById('total-rewards-usd').textContent = '$50.35K';
                 document.getElementById('total-rewards-sol').textContent = '234.039 SOL';
                 document.getElementById('market-cap').textContent = '$751.6K';
-                document.getElementById('last-updated').textContent = 'Offline';
             }
-        }
-        
-        function refreshRewards() {
-            // Add loading state
-            const refreshBtn = document.querySelector('button[onclick="refreshRewards()"]');
-            const originalText = refreshBtn.textContent;
-            refreshBtn.textContent = '🔄 Loading...';
-            refreshBtn.disabled = true;
-            
-            fetchCreatorRewards().then(() => {
-                // Reset button after loading
-                setTimeout(() => {
-                    refreshBtn.textContent = originalText;
-                    refreshBtn.disabled = false;
-                }, 1000);
-            });
         }
         
         // Load creator rewards when page loads
         document.addEventListener('DOMContentLoaded', function() {
             fetchCreatorRewards();
             
-            // Auto-refresh every 5 minutes
-            setInterval(fetchCreatorRewards, 5 * 60 * 1000);
+            // Auto-refresh every 30 seconds
+            setInterval(fetchCreatorRewards, 30 * 1000);
         });
 
         // Stats update functionality
