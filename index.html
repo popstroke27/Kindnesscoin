@@ -415,31 +415,31 @@
         }
 
         .section {
-            padding: 6rem 2rem;
+            padding: 4rem 2rem;
             max-width: 1200px;
             margin: 0 auto;
         }
         
         .section h2 {
             text-align: center;
-            font-size: 3.5rem;
-            margin-bottom: 3rem;
+            font-size: 3rem;
+            margin-bottom: 2rem;
             color: #2d2d2d;
             font-weight: 800;
         }
         
         .features {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 3rem;
-            margin: 5rem 0;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
         }
         
         .feature-card {
             background: white;
-            padding: 3rem 2.5rem;
-            border-radius: 25px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            padding: 2rem 1.5rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.06);
             border: 1px solid #f0f0f0;
             text-align: center;
             transition: all 0.3s ease;
@@ -452,23 +452,23 @@
         }
         
         .feature-icon {
-            font-size: 4rem;
-            margin-bottom: 2rem;
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
             display: block;
             color: #dc2626;
         }
         
         .feature-card h3 {
-            font-size: 1.6rem;
-            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
             color: #2d2d2d;
             font-weight: 700;
         }
         
         .feature-card p {
             color: #666;
-            font-size: 1.1rem;
-            line-height: 1.7;
+            font-size: 1rem;
+            line-height: 1.6;
         }
         
         .tokenomics {
@@ -587,10 +587,10 @@
         /* Creator Rewards Section Styles */
         .rewards-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
             margin: 3rem 0;
-            max-width: 1000px;
+            max-width: 900px;
             margin-left: auto;
             margin-right: auto;
         }
@@ -643,7 +643,7 @@
         /* Responsive adjustments for rewards */
         @media (max-width: 768px) {
             .rewards-grid {
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                grid-template-columns: 1fr;
                 gap: 1.5rem;
             }
             
@@ -653,6 +653,11 @@
             
             .reward-value {
                 font-size: 2rem;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
             }
         }
         
@@ -1028,7 +1033,7 @@
 </head>
 <body>
     <div class="contract-banner">
-        <div class="contract-text">📊 $KINDNESS Contract Address</div>
+        <div class="contract-text">📊 $KIND Contract Address</div>
         <span class="contract-address">9eyegrQF3JnEnEnGQKn2M7EB7H1j1ZTq8Sb65738wUMG</span>
         <button class="copy-btn" onclick="copyContract()">Copy Address</button>
     </div>
@@ -1101,6 +1106,48 @@
             <p style="color: rgba(255,255,255,0.9); font-size: 1.1rem; margin-top: 1rem;">
                 Watch kindness in action - real impact, real people, real change 💝
             </p>
+        </div>
+    </section>
+
+    <!-- Live Creator Rewards Section -->
+    <section id="creator-rewards" style="padding: 4rem 2rem; background: linear-gradient(135deg, #fff5f5 0%, #ffe4e6 100%); position: relative; overflow: hidden;">
+        <div style="max-width: 1200px; margin: 0 auto; text-align: center; position: relative; z-index: 1;">
+            <h2 style="font-size: 3rem; margin-bottom: 1rem; background: linear-gradient(135deg, #dc2626, #f87171); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                🎉 Live Creator Rewards
+            </h2>
+            <p style="font-size: 1.3rem; margin-bottom: 3rem; color: #666; max-width: 600px; margin-left: auto; margin-right: auto;">
+                Real-time data showing how $KIND is making a difference for creators and the community
+            </p>
+            
+            <div class="rewards-grid" id="rewards-container">
+                <div class="reward-card">
+                    <div class="reward-icon">💰</div>
+                    <div class="reward-label">Total Creator Rewards</div>
+                    <div class="reward-value" id="total-rewards-usd">Loading...</div>
+                    <div class="reward-subtitle" id="total-rewards-sol">Loading...</div>
+                </div>
+                
+                <div class="reward-card">
+                    <div class="reward-icon">📈</div>
+                    <div class="reward-label">Current Market Cap</div>
+                    <div class="reward-value" id="market-cap">Loading...</div>
+                    <div class="reward-subtitle">$KIND Token Value</div>
+                </div>
+                
+                
+                <div class="reward-card">
+                    <div class="reward-icon">⏰</div>
+                    <div class="reward-label">Last Updated</div>
+                    <div class="reward-value" id="last-updated">Loading...</div>
+                    <div class="reward-subtitle">Live Data</div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 2rem;">
+                <button onclick="refreshRewards()" class="btn btn-secondary" style="background: linear-gradient(135deg, #dc2626, #f87171); color: white; border: none;">
+                    🔄 Refresh Data
+                </button>
+            </div>
         </div>
     </section>
 
@@ -1297,54 +1344,6 @@
         </div>
     </section>
 
-    <!-- Live Creator Rewards Section -->
-    <section id="creator-rewards" style="padding: 4rem 2rem; background: linear-gradient(135deg, #fff5f5 0%, #ffe4e6 100%); position: relative; overflow: hidden;">
-        <div style="max-width: 1200px; margin: 0 auto; text-align: center; position: relative; z-index: 1;">
-            <h2 style="font-size: 3rem; margin-bottom: 1rem; background: linear-gradient(135deg, #dc2626, #f87171); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
-                🎉 Live Creator Rewards
-            </h2>
-            <p style="font-size: 1.3rem; margin-bottom: 3rem; color: #666; max-width: 600px; margin-left: auto; margin-right: auto;">
-                Real-time data showing how $KIND is making a difference for creators and the community
-            </p>
-            
-            <div class="rewards-grid" id="rewards-container">
-                <div class="reward-card">
-                    <div class="reward-icon">💰</div>
-                    <div class="reward-label">Total Creator Rewards</div>
-                    <div class="reward-value" id="total-rewards-usd">Loading...</div>
-                    <div class="reward-subtitle" id="total-rewards-sol">Loading...</div>
-                </div>
-                
-                <div class="reward-card">
-                    <div class="reward-icon">📈</div>
-                    <div class="reward-label">Current Market Cap</div>
-                    <div class="reward-value" id="market-cap">Loading...</div>
-                    <div class="reward-subtitle">$KIND Token Value</div>
-                </div>
-                
-                <div class="reward-card">
-                    <div class="reward-icon">👥</div>
-                    <div class="reward-label">Community Followers</div>
-                    <div class="reward-value" id="followers-count">Loading...</div>
-                    <div class="reward-subtitle">Growing Daily</div>
-                </div>
-                
-                <div class="reward-card">
-                    <div class="reward-icon">⏰</div>
-                    <div class="reward-label">Last Updated</div>
-                    <div class="reward-value" id="last-updated">Loading...</div>
-                    <div class="reward-subtitle">Live Data</div>
-                </div>
-            </div>
-            
-            <div style="margin-top: 2rem;">
-                <button onclick="refreshRewards()" class="btn btn-secondary" style="background: linear-gradient(135deg, #dc2626, #f87171); color: white; border: none;">
-                    🔄 Refresh Data
-                </button>
-            </div>
-        </div>
-    </section>
-
     <footer>
         <p style="font-size: 1.3rem; font-weight: bold;">&copy; 2025 $KIND Coin</p>
         <p style="font-size: 1.1rem;">Spreading kindness, one transaction at a time 💝</p>
@@ -1447,22 +1446,28 @@
                 document.getElementById('total-rewards-usd').textContent = `$${data.totalUSD}`;
                 document.getElementById('total-rewards-sol').textContent = `${data.totalSOL} SOL`;
                 document.getElementById('market-cap').textContent = `$${data.marketCap}`;
-                document.getElementById('followers-count').textContent = data.followers;
                 
-                // Format last updated time
-                const lastUpdated = new Date(data.lastUpdated);
-                const timeString = lastUpdated.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-                document.getElementById('last-updated').textContent = timeString;
+                // Format last updated time with better error handling
+                try {
+                    const lastUpdated = new Date(data.lastUpdated);
+                    if (isNaN(lastUpdated.getTime())) {
+                        document.getElementById('last-updated').textContent = 'Just Now';
+                    } else {
+                        const timeString = lastUpdated.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+                        document.getElementById('last-updated').textContent = timeString;
+                    }
+                } catch (dateError) {
+                    document.getElementById('last-updated').textContent = 'Just Now';
+                }
                 
                 console.log('Creator rewards updated successfully');
             } catch (error) {
                 console.error('Error fetching creator rewards:', error);
-                // Show fallback data
-                document.getElementById('total-rewards-usd').textContent = '$50.27K';
-                document.getElementById('total-rewards-sol').textContent = '233.987 SOL';
-                document.getElementById('market-cap').textContent = '$218.2K';
-                document.getElementById('followers-count').textContent = '86';
-                document.getElementById('last-updated').textContent = 'Error';
+                // Show updated fallback data
+                document.getElementById('total-rewards-usd').textContent = '$50.35K';
+                document.getElementById('total-rewards-sol').textContent = '234.039 SOL';
+                document.getElementById('market-cap').textContent = '$751.6K';
+                document.getElementById('last-updated').textContent = 'Offline';
             }
         }
         
